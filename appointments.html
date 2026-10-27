@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Request an appointment at Masaka Regional Referral Hospital.">
+<title>Appointments | Masaka Regional Referral Hospital</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #082b49; --navy-deep: #051e34; --teal: #087f8c;
+  --teal-light: #e8f7f7; --gold: #d6ad48; --white: #ffffff;
+  --bg: #f4f8fb; --text: #243746; --muted: #647786; --border: #dce5eb;
+  --shadow-sm: 0 4px 12px rgba(9,38,64,0.06);
+  --shadow-md: 0 8px 24px rgba(9,38,64,0.09);
+  --shadow-lg: 0 18px 45px rgba(9,38,64,0.16);
+  --radius: 10px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(-38px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideRight { from { opacity: 0; transform: translateX(38px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(214,173,72,0.45); } 70% { box-shadow: 0 0 0 14px rgba(214,173,72,0); } 100% { box-shadow: 0 0 0 0 rgba(214,173,72,0); } }
+.anim-up { animation: fadeUp .7s cubic-bezier(.22,1,.36,1) both; }
+.anim-left { animation: slideLeft .8s cubic-bezier(.22,1,.36,1) both; }
+.anim-right { animation: slideRight .8s cubic-bezier(.22,1,.36,1) both; }
+.d1 { animation-delay: .1s; } .d2 { animation-delay: .2s; } .d3 { animation-delay: .3s; }
+.topbar { background: var(--navy); color: white; padding: 9px 6%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+header { background: white; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); transition: box-shadow .3s; }
+header.scrolled { box-shadow: var(--shadow-md); }
+.navbar { max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--navy); min-width: 210px; }
+.brand-mark { width: 48px; height: 48px; background: var(--navy); color: white; border-bottom: 4px solid var(--gold); border-radius: 9px; display: grid; place-items: center; font-size: 26px; font-weight: bold; transition: transform .35s, background .35s; }
+.brand:hover .brand-mark { transform: scale(1.06) rotate(-3deg); background: var(--teal); }
+.brand h1 { font-size: 15px; line-height: 1.25; }
+.brand p { font-size: 10px; color: var(--teal); font-weight: bold; letter-spacing: 1px; }
+.menu-toggle { display: none; background: var(--navy); color: white; border: none; border-radius: 6px; padding: 9px 13px; font-size: 20px; cursor: pointer; transition: background .2s; }
+.menu-toggle:hover { background: var(--teal); }
+.nav-links { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
+.nav-links a { color: var(--navy); font-size: 13px; font-weight: bold; padding: 6px 2px; position: relative; transition: color .25s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width .3s; }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); }
+.nav-links a.active { font-weight: 800; }
+.nav-links .contact-link { background: var(--teal); color: white; padding: 8px 15px; border-radius: 5px; }
+.nav-links .contact-link:hover { background: var(--navy); }
+.nav-links .contact-link::after { display: none; }
+.page-hero { min-height: 280px; padding: 65px 8%; display: flex; align-items: center; color: white; background-size: cover; background-position: center; }
+.page-hero .eyebrow { color: var(--gold); font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+.page-hero h2 { font-family: Georgia, serif; font-size: clamp(32px,4vw,48px); line-height: 1.15; margin: 12px 0 16px; }
+.page-hero p { max-width: 680px; color: #e0eaf0; font-size: 16px; }
+.section { padding: 60px 8%; }
+.section-heading { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+.section-heading .eyebrow { color: var(--teal); font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+.section-heading h2 { font-family: Georgia, serif; font-size: 34px; line-height: 1.25; margin: 10px 0 12px; color: var(--navy); }
+.section-heading h2::after { content: ''; display: block; width: 65px; height: 4px; background: var(--gold); margin: 12px auto 0; border-radius: 4px; }
+.section-heading p { color: var(--muted); font-size: 14px; }
+.two-col { display: grid; grid-template-columns: 1.6fr 0.8fr; gap: 28px; align-items: start; }
+.form-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow-sm); }
+.form-card h3 { color: var(--navy); margin-bottom: 8px; }
+.form-card p.intro { color: var(--muted); font-size: 14px; margin-bottom: 22px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full { grid-column: 1 / -1; }
+label { font-size: 13px; font-weight: bold; color: var(--navy); }
+input, select, textarea { width: 100%; padding: 12px 14px; border: 1px solid #cbd8e1; border-radius: 6px; font: inherit; font-size: 14px; color: var(--text); background: white; transition: border-color .2s, box-shadow .2s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(8,127,140,.15); }
+textarea { min-height: 100px; resize: vertical; }
+.consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 13px; }
+.consent input { width: 17px; height: 17px; margin-top: 3px; accent-color: var(--teal); flex-shrink: 0; }
+.submit-btn { width: 100%; margin-top: 20px; padding: 14px; background: var(--teal); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; transition: background .25s, transform .2s; }
+.submit-btn:hover { background: var(--navy); transform: translateY(-2px); }
+.form-message { display: none; margin-top: 18px; padding: 14px; border-radius: 6px; font-size: 14px; }
+.form-message.show { display: block; }
+.form-message.success { background: #eaf7ef; border: 1px solid #a8d9bb; color: #176b49; }
+.form-message.error { background: #fff0f0; border: 1px solid #e6b5b5; color: #8d2424; }
+.side-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+.side-card h3 { color: var(--navy); margin-bottom: 8px; }
+.side-card p { color: var(--muted); font-size: 14px; }
+.side-card .info-line { margin-top: 12px; font-size: 13px; }
+.side-card a.side-link { display: inline-block; margin-top: 12px; color: var(--teal); font-weight: bold; font-size: 14px; }
+.card-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.info-card { background: white; border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform .3s, box-shadow .3s; }
+.info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.info-card .icon { font-size: 28px; margin-bottom: 12px; }
+.info-card h3 { color: var(--navy); margin-bottom: 8px; font-size: 17px; }
+.info-card p { font-size: 14px; color: var(--muted); }
+.btn { display: inline-block; padding: 13px 22px; border-radius: 5px; font-size: 12px; font-weight: bold; transition: transform .25s, box-shadow .25s, background .25s; border: none; cursor: pointer; text-align: center; }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--gold); color: var(--navy); }
+footer { background: var(--navy-deep); color: #d9e5ec; padding: 45px 8% 20px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 35px; margin-bottom: 25px; }
+footer h3, footer h4 { color: white; margin-bottom: 12px; }
+footer p, footer a { font-size: 13px; color: #c0d0dc; }
+footer a { display: block; margin: 5px 0; transition: color .2s; }
+footer a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid #ffffff25; padding-top: 16px; text-align: center; font-size: 12px; color: #aebfcb; }
+.back-top { position: fixed; bottom: 26px; right: 26px; width: 48px; height: 48px; background: var(--teal); color: white; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; box-shadow: var(--shadow-md); display: none; z-index: 999; transition: background .2s, transform .2s; }
+.back-top.show { display: grid; place-items: center; animation: pulseRing 2s infinite; }
+.back-top:hover { background: var(--navy); transform: translateY(-3px); }
+@media (max-width: 1100px) { .card-grid-3 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  .nav-links { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 0 5px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 5px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .nav-links .contact-link { text-align: center; margin-top: 6px; }
+  .two-col { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full { grid-column: auto; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .card-grid-3, .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > div:first-child { grid-column: auto; }
+  .section { padding: 40px 6%; }
+  .page-hero { padding: 50px 6%; }
+  .brand h1 { font-size: 13px; }
+  .brand-mark { width: 42px; height: 42px; font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span>Masaka City, Uganda</span><span>Care • Compassion • Health</span></div>
+
+<header id="mainHeader">
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">+</div>
+      <div><h1>MASAKA REGIONAL<br>REFERRAL HOSPITAL</h1><p>CARE • COMPASSION • HEALTH</p></div>
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="departments.html">Departments</a>
+      <a href="people.html">Our Team</a>
+      <a href="appointments.html" class="active">Appointments</a>
+      <a href="patient-guide.html">Patient Guide</a>
+      <a href="contact.html" class="contact-link">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero" style="background:linear-gradient(90deg,rgba(5,29,50,.96),rgba(5,29,50,.72)),url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85') center/cover">
+    <div class="anim-left">
+      <span class="eyebrow">Accessible healthcare</span>
+      <h2>Request an Appointment</h2>
+      <p>Use this form to request a hospital appointment. Choose a department and a preferred date, then submit your details.</p>
+      <a href="#appointment-form" class="btn btn-primary" style="margin-top:20px">Open Request Form</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading anim-up"><span class="eyebrow">Appointment Services</span><h2>Plan Your Visit</h2><p>Complete the fields below to request an appointment. Required fields are marked with an asterisk (*).</p></div>
+
+    <div class="two-col">
+      <div class="form-card anim-up" id="appointment-form">
+        <h3>Appointment Request Form</h3>
+        <p class="intro">Enter your details and select your preferred department and visit date.</p>
+        <form id="appointmentForm">
+          <div class="form-grid">
+            <div class="form-group"><label for="fullName">Patient's Full Name *</label><input type="text" id="fullName" placeholder="Enter full name" minlength="2" maxlength="100" required></div>
+            <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" placeholder="e.g. 07XXXXXXXX" pattern="[0-9+() -]{7,20}" required></div>
+            <div class="form-group full"><label for="email">Email Address (optional)</label><input type="email" id="email" placeholder="you@example.com"></div>
+            <div class="form-group"><label for="department">Department *</label><select id="department" required><option value="">Choose a department</option><option>General Outpatient</option><option>Maternity</option><option>Paediatrics</option><option>Surgery</option><option>Medicine</option><option>Dental Services</option><option>Eye Services</option><option>Laboratory Services</option><option>Other / Not Sure</option></select></div>
+            <div class="form-group"><label for="visitType">Type of Visit *</label><select id="visitType" required><option value="">Choose visit type</option><option>First visit</option><option>Follow-up visit</option><option>Review or consultation</option><option>Other</option></select></div>
+            <div class="form-group"><label for="preferredDate">Preferred Date *</label><input type="date" id="preferredDate" required></div>
+            <div class="form-group"><label for="preferredTime">Preferred Time (optional)</label><select id="preferredTime"><option value="">No preference</option><option>Morning</option><option>Afternoon</option></select></div>
+            <div class="form-group full"><label for="reason">Brief Reason for Visit (optional)</label><textarea id="reason" maxlength="250" placeholder="Enter a brief, non-sensitive description."></textarea></div>
+          </div>
+          <label class="consent"><input type="checkbox" id="consent" required><span>I confirm that the information provided is accurate and I understand the hospital will contact me to confirm the appointment. *</span></label>
+          <button class="submit-btn" type="submit">Submit Appointment Request</button>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <aside class="anim-right">
+        <div class="side-card">
+          <h3>Before Your Visit</h3>
+          <p>Confirm current procedures, clinic schedules and referral requirements directly with the hospital through our verified official channels.</p>
+          <p class="info-line"><strong>✓ Prepare Your Documents:</strong> Check whether identification, referral documents or previous records are required.</p>
+          <p class="info-line"><strong>✓ Confirm Your Visit:</strong> Your appointment request will be reviewed and confirmed by our team.</p>
+          <p class="info-line"><strong>♥ Urgent Medical Needs:</strong> Do not wait for an online appointment if you need urgent medical attention.</p>
+          <a href="patient-guide.html" class="side-link">Read the Patient Guide →</a>
+        </div>
+        <div class="side-card">
+          <h3>Explore Hospital Information</h3>
+          <p>Learn about our services and departments before choosing an option in the form.</p>
+          <a href="services.html" class="side-link">View Medical Services →</a><br>
+          <a href="departments.html" class="side-link">Explore Departments →</a><br>
+          <a href="contact.html" class="side-link">Contact Information →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="section-heading anim-up"><span class="eyebrow">How it works</span><h2>Three Simple Steps</h2><p>Our appointment process is designed to be simple and convenient.</p></div>
+    <div class="card-grid-3">
+      <div class="info-card anim-up d1"><div class="icon">1️⃣</div><h3>Enter Your Details</h3><p>Fill in required fields and select your preferred department and visit date.</p></div>
+      <div class="info-card anim-up d2"><div class="icon">2️⃣</div><h3>Submit Your Request</h3><p>The system checks required fields, phone format, consent and the selected date.</p></div>
+      <div class="info-card anim-up d3"><div class="icon">3️⃣</div><h3>Await Confirmation</h3><p>Our team will review your request and contact you to confirm the appointment details.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><h3>Masaka Regional Referral Hospital</h3><p>Committed to accessible, compassionate and professional healthcare for our community.</p><p>Masaka City, Uganda</p></div>
+    <div><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Medical Services</a><a href="departments.html">Departments</a></div>
+    <div><h4>Patient Resources</h4><a href="people.html">Our Healthcare Team</a><a href="appointments.html">Appointments</a><a href="patient-guide.html">Patient Guide</a><a href="contact.html">Contact Us</a></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; <span id="year"></span> Masaka Regional Referral Hospital. All rights reserved.</p></div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+document.getElementById('year').textContent = new Date().getFullYear();
+window.addEventListener('scroll', function() {
+  document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 10);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+const dateInput = document.getElementById('preferredDate');
+function getLocalDate() {
+  const now = new Date();
+  return now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+}
+dateInput.min = getLocalDate();
+dateInput.addEventListener('focus', () => { dateInput.min = getLocalDate(); });
+
+const form = document.getElementById('appointmentForm');
+const formMessage = document.getElementById('formMessage');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  formMessage.className = 'form-message';
+  formMessage.textContent = '';
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  if (dateInput.value < getLocalDate()) {
+    formMessage.className = 'form-message show error';
+    formMessage.textContent = 'Please select today or a future date.';
+    dateInput.focus();
+    return;
+  }
+  const dept = document.getElementById('department').selectedOptions[0].text;
+  formMessage.className = 'form-message show success';
+  formMessage.textContent = 'Thank you! Your appointment request for ' + dept + ' has been received. Our team will contact you to confirm.';
+  form.reset();
+  dateInput.min = getLocalDate();
+  formMessage.scrollIntoView({behavior:'smooth', block:'center'});
+});
+</script>
+</body>
+</html>

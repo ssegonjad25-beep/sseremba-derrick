@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Patient guide for Masaka Regional Referral Hospital.">
+<title>Patient Guide | Masaka Regional Referral Hospital</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #082b49; --navy-deep: #051e34; --teal: #087f8c;
+  --teal-light: #e8f7f7; --gold: #d6ad48; --white: #ffffff;
+  --bg: #f4f8fb; --text: #243746; --muted: #647786; --border: #dce5eb;
+  --shadow-sm: 0 4px 12px rgba(9,38,64,0.06);
+  --shadow-md: 0 8px 24px rgba(9,38,64,0.09);
+  --shadow-lg: 0 18px 45px rgba(9,38,64,0.16);
+  --radius: 10px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { opacity: 0; transform: translateX(-38px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(214,173,72,0.45); } 70% { box-shadow: 0 0 0 14px rgba(214,173,72,0); } 100% { box-shadow: 0 0 0 0 rgba(214,173,72,0); } }
+.anim-up { animation: fadeUp .7s cubic-bezier(.22,1,.36,1) both; }
+.anim-left { animation: slideLeft .8s cubic-bezier(.22,1,.36,1) both; }
+.d1 { animation-delay: .1s; } .d2 { animation-delay: .2s; } .d3 { animation-delay: .3s; } .d4 { animation-delay: .4s; } .d5 { animation-delay: .5s; } .d6 { animation-delay: .6s; }
+.topbar { background: var(--navy); color: white; padding: 9px 6%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+header { background: white; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); transition: box-shadow .3s; }
+header.scrolled { box-shadow: var(--shadow-md); }
+.navbar { max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--navy); min-width: 210px; }
+.brand-mark { width: 48px; height: 48px; background: var(--navy); color: white; border-bottom: 4px solid var(--gold); border-radius: 9px; display: grid; place-items: center; font-size: 26px; font-weight: bold; transition: transform .35s, background .35s; }
+.brand:hover .brand-mark { transform: scale(1.06) rotate(-3deg); background: var(--teal); }
+.brand h1 { font-size: 15px; line-height: 1.25; }
+.brand p { font-size: 10px; color: var(--teal); font-weight: bold; letter-spacing: 1px; }
+.menu-toggle { display: none; background: var(--navy); color: white; border: none; border-radius: 6px; padding: 9px 13px; font-size: 20px; cursor: pointer; transition: background .2s; }
+.menu-toggle:hover { background: var(--teal); }
+.nav-links { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
+.nav-links a { color: var(--navy); font-size: 13px; font-weight: bold; padding: 6px 2px; position: relative; transition: color .25s; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width .3s; }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); }
+.nav-links a.active { font-weight: 800; }
+.nav-links .contact-link { background: var(--teal); color: white; padding: 8px 15px; border-radius: 5px; }
+.nav-links .contact-link:hover { background: var(--navy); }
+.nav-links .contact-link::after { display: none; }
+.page-hero { min-height: 280px; padding: 65px 8%; display: flex; align-items: center; color: white; background-size: cover; background-position: center; }
+.page-hero .eyebrow { color: var(--gold); font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+.page-hero h2 { font-family: Georgia, serif; font-size: clamp(32px,4vw,48px); line-height: 1.15; margin: 12px 0 16px; }
+.page-hero p { max-width: 680px; color: #e0eaf0; font-size: 16px; }
+.section { padding: 60px 8%; }
+.section-heading { text-align: center; max-width: 720px; margin: 0 auto 40px; }
+.section-heading .eyebrow { color: var(--teal); font-size: 12px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+.section-heading h2 { font-family: Georgia, serif; font-size: 34px; line-height: 1.25; margin: 10px 0 12px; color: var(--navy); }
+.section-heading h2::after { content: ''; display: block; width: 65px; height: 4px; background: var(--gold); margin: 12px auto 0; border-radius: 4px; }
+.section-heading p { color: var(--muted); font-size: 14px; }
+.card-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.info-card { background: white; border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform .3s, box-shadow .3s; }
+.info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.info-card .icon { font-size: 28px; margin-bottom: 12px; }
+.info-card h3 { color: var(--navy); margin-bottom: 8px; font-size: 17px; }
+.info-card p { font-size: 14px; color: var(--muted); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+.rights-list { display: grid; gap: 10px; }
+.right-item { display: flex; gap: 10px; align-items: flex-start; padding: 14px; background: white; border: 1px solid var(--border); border-radius: 8px; }
+.right-item span { color: var(--teal); font-size: 20px; font-weight: bold; }
+.right-item p { font-size: 13px; color: var(--muted); }
+details { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+summary { cursor: pointer; color: var(--navy); font-weight: bold; }
+details p { padding-top: 10px; font-size: 14px; color: var(--muted); }
+.cta-strip { background: var(--navy); color: white; text-align: center; padding: 50px 8%; border-radius: 16px; margin: 30px 0; }
+.cta-strip h2 { font-family: Georgia, serif; font-size: 30px; margin-bottom: 10px; }
+.cta-strip p { color: #d1dfe8; font-size: 14px; margin-bottom: 20px; }
+.btn { display: inline-block; padding: 13px 22px; border-radius: 5px; font-size: 12px; font-weight: bold; transition: transform .25s, box-shadow .25s, background .25s; border: none; cursor: pointer; text-align: center; }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--gold); color: var(--navy); }
+footer { background: var(--navy-deep); color: #d9e5ec; padding: 45px 8% 20px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 35px; margin-bottom: 25px; }
+footer h3, footer h4 { color: white; margin-bottom: 12px; }
+footer p, footer a { font-size: 13px; color: #c0d0dc; }
+footer a { display: block; margin: 5px 0; transition: color .2s; }
+footer a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid #ffffff25; padding-top: 16px; text-align: center; font-size: 12px; color: #aebfcb; }
+.back-top { position: fixed; bottom: 26px; right: 26px; width: 48px; height: 48px; background: var(--teal); color: white; border: none; border-radius: 50%; font-size: 22px; cursor: pointer; box-shadow: var(--shadow-md); display: none; z-index: 999; transition: background .2s, transform .2s; }
+.back-top.show { display: grid; place-items: center; animation: pulseRing 2s infinite; }
+.back-top:hover { background: var(--navy); transform: translateY(-3px); }
+@media (max-width: 1100px) { .card-grid-3 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  .nav-links { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 10px 0 5px; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 5px; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .nav-links .contact-link { text-align: center; margin-top: 6px; }
+  .two-col { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .card-grid-3, .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid > div:first-child { grid-column: auto; }
+  .section { padding: 40px 6%; }
+  .page-hero { padding: 50px 6%; }
+  .brand h1 { font-size: 13px; }
+  .brand-mark { width: 42px; height: 42px; font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span>Masaka City, Uganda</span><span>Care • Compassion • Health</span></div>
+
+<header id="mainHeader">
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">+</div>
+      <div><h1>MASAKA REGIONAL<br>REFERRAL HOSPITAL</h1><p>CARE • COMPASSION • HEALTH</p></div>
+    </a>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="departments.html">Departments</a>
+      <a href="people.html">Our Team</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="patient-guide.html" class="active">Patient Guide</a>
+      <a href="contact.html" class="contact-link">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero" style="background:linear-gradient(90deg,rgba(5,29,50,.96),rgba(5,29,50,.72)),url('im3.jpeg') center/cover">
+    <div class="anim-left">
+      <span class="eyebrow">Your health journey</span>
+      <h2>A Helpful Guide for Every Patient</h2>
+      <p>Learn how to prepare for a hospital visit, organise your documents, understand referrals, communicate with healthcare professionals and take an active role in your care.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading anim-up"><span class="eyebrow">Before arriving</span><h2>Prepare for Your Visit</h2><p>Good preparation can help make a healthcare visit more organised.</p></div>
+    <div class="card-grid-3">
+      <div class="info-card anim-up d1"><div class="icon">▤</div><h3>Organise Your Documents</h3><p>Prepare relevant information: referral letter, previous medical records, a list of medicines you take, and any identification requested by the hospital.</p></div>
+      <div class="info-card anim-up d2"><div class="icon">◷</div><h3>Plan Your Journey</h3><p>Allow time for travel and possible queues. Check transport, confirm the relevant clinic and ask whether you need to arrive at a particular time.</p></div>
+      <div class="info-card anim-up d3"><div class="icon">✚</div><h3>Prepare Your Questions</h3><p>Write down questions, explain concerns clearly, ask for clarification and share relevant allergies and medicines with clinical staff.</p></div>
+      <div class="info-card anim-up d4"><div class="icon">↗</div><h3>Understand Referrals</h3><p>Bring your referral letter if you have one, keep relevant test results, ask where to report on arrival and confirm follow-up arrangements.</p></div>
+      <div class="info-card anim-up d5"><div class="icon">♡</div><h3>Support Children & Dependants</h3><p>Bring relevant health records, prepare an accompanying adult, bring essential care items and tell staff if mobility or communication support is needed.</p></div>
+      <div class="info-card anim-up d6"><div class="icon">!</div><h3>Know When Not to Wait</h3><p>Seek urgent help for severe or rapidly worsening symptoms. Do not wait for a routine appointment in an emergency.</p></div>
+    </div>
+  </section>
+
+  <section class="section" style="background:white;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="two-col">
+      <div>
+        <div class="section-heading" style="text-align:left;margin-bottom:20px"><span class="eyebrow">At the hospital</span><h2 style="text-align:left">What to Expect</h2></div>
+        <div style="background:var(--bg);border-radius:var(--radius);padding:24px;border-top:4px solid var(--teal)">
+          <h3 style="color:var(--navy);margin-bottom:12px">A General Patient Journey</h3>
+          <ul style="padding-left:20px;font-size:14px;color:var(--muted)">
+            <li><strong>Arrival:</strong> Ask staff where to register or report.</li>
+            <li><strong>Registration:</strong> Provide requested information through the approved process.</li>
+            <li><strong>Initial assessment:</strong> Staff may check your needs and direct you to the right service.</li>
+            <li><strong>Consultation:</strong> Explain concerns and ask questions about your care.</li>
+            <li><strong>Next steps:</strong> Follow instructions for tests, treatment, referrals or review.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading" style="text-align:left;margin-bottom:20px"><span class="eyebrow">Take an active role</span><h2 style="text-align:left">Your Rights & Responsibilities</h2></div>
+        <div class="rights-list">
+          <div class="right-item"><span>✓</span><p><strong>Respect and dignity.</strong> Expect courteous treatment without discrimination.</p></div>
+          <div class="right-item"><span>✓</span><p><strong>Clear explanations.</strong> Ask staff to explain your condition and care in language you understand.</p></div>
+          <div class="right-item"><span>✓</span><p><strong>Privacy and confidentiality.</strong> Your health information should be handled appropriately.</p></div>
+          <div class="right-item"><span>✓</span><p><strong>Informed participation.</strong> Ask questions and discuss concerns before making healthcare decisions.</p></div>
+          <div class="right-item"><span>✓</span><p><strong>Shared responsibility.</strong> Provide accurate information and follow the care plan agreed with your team.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading anim-up"><span class="eyebrow">Common questions</span><h2>Patient Guide FAQs</h2><p>General answers to common questions.</p></div>
+    <div style="display:grid;gap:12px">
+      <details class="anim-up d1"><summary>Do I need a referral letter?</summary><p>Requirements depend on the service and your circumstances. If you have been referred from another facility, bring the referral letter and relevant records. Confirm whether a referral is required for your intended service.</p></details>
+      <details class="anim-up d2"><summary>What documents should I bring?</summary><p>Consider bringing requested identification, referral documents, previous relevant records and a list of medicines you take. Check the hospital's current requirements before your visit.</p></details>
+      <details class="anim-up d3"><summary>How do I request an appointment?</summary><p>Use the appointment form on our website to submit a request. Our team will review and contact you to confirm the details.</p></details>
+      <details class="anim-up d4"><summary>What should I do if I need urgent medical attention?</summary><p>Do not wait for a routine appointment or a reply to a website enquiry. Seek urgent medical assistance through local emergency services or the nearest appropriate emergency facility.</p></details>
+      <details class="anim-up d5"><summary>What if I do not understand my treatment instructions?</summary><p>Ask your healthcare professional to explain the instructions again. Before leaving, make sure you understand any medicines, follow-up arrangements and warning signs to watch for.</p></details>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-strip anim-up">
+      <h2>Need More Information?</h2>
+      <p>Request an appointment or visit the contact page for our information layout.</p>
+      <a class="btn btn-primary" href="appointments.html">Appointment Page →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><h3>Masaka Regional Referral Hospital</h3><p>Committed to accessible, compassionate and professional healthcare for our community.</p><p>Masaka City, Uganda</p></div>
+    <div><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Medical Services</a><a href="departments.html">Departments</a></div>
+    <div><h4>Patient Resources</h4><a href="people.html">Our Healthcare Team</a><a href="appointments.html">Appointments</a><a href="patient-guide.html">Patient Guide</a><a href="contact.html">Contact Us</a></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; <span id="year"></span> Masaka Regional Referral Hospital. All rights reserved.</p></div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+document.getElementById('year').textContent = new Date().getFullYear();
+window.addEventListener('scroll', function() {
+  document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 10);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+</script>
+</body>
+</html>
